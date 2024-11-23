@@ -6,14 +6,19 @@ const TodoList = () => {
     const[todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
 
-    const handleSubmit =()=>{
+    const handleSubmit =(e)=>{
+        e.preventDefault();
         setTodos((todos)=>{
-            todos.concat({
+           return todos.concat({
                 text:input,
                 id: Math.floor(Math.random()*10),
             });
         });
         setInput('');
+    };
+
+    const removeTodo=(id)=>{
+        setTodos((todos)=> todos.filter((t)=> t.id !==id));
     }
 
   return (
